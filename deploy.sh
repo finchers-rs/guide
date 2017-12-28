@@ -10,15 +10,6 @@ get_branch() {
     fi
 }
 
-ensure_installed() {
-  local return_=1
-  type $1 > /dev/null 2>&1 || { local return_=0; }
-  if [[ "$return_" != "0" ]]; then
-      echo "Please install '$1'."
-      exit 1
-  fi
-}
-
 if [[ -z "${TRAVIS_BRANCH:-}" ]]; then
     echo "This script may only be run from Travis CI."
     exit 1
@@ -28,9 +19,6 @@ BRANCH="$(get_branch)"
 if [[ "${BRANCH}" != "master" ]]; then
     echo "The deployment should be from 'master', not '${BRANCH}'."
 fi
-
-ensure_installed git
-ensure_installed mdbook
 
 REV="$(git rev-parse --short HEAD)"
 UPSTREAM_URL="https://${GH_TOKEN}@github.com/finchers-rs/docs.git"
