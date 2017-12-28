@@ -1,6 +1,8 @@
+# Getting Started
+
 *Note:* The english version is coming soon...
 
-# Installation
+## Installation
 
 `Cargo.toml` および `main.rs` を追加する．
 
@@ -15,10 +17,10 @@ extern crate futures;
 extern crate finchers;
 ```
 
-# Building an endpoint
+## Building an endpoint
 WIP
 
-# Starting the HTTP service
+## Starting the HTTP service
 
 ```rust
 ServerBuilder::default()

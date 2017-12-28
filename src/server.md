@@ -1,3 +1,5 @@
+# Serving an `Endpoint`
+
 構築された `Endpoint` は適切に Hyper のサービスとして起動する必要がある．
 
 最も簡単な方法は，`ServerBuilder` を用いるものである．
@@ -34,7 +36,7 @@ fn main() {
     core.run(empty()).unwrap();
 }
 
-fn serve<T>(service: &T addr: &SocketAddr, handle: &Handle)
+fn serve<T>(service: &T, addr: &SocketAddr, handle: &Handle)
 where
     T: Clone + Service<
         Request = hyper::Request,

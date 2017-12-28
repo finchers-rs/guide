@@ -1,7 +1,7 @@
 # Summary
 
-[About](aboud.md)
+[About](about.md)
 
 - [Getting Started](getting-started.md)
-- [The structure of Finchers HTTP service](structure.md)
+- [The Structure of Finchers HTTP Services](structure.md)
 - [Serving an Endpoint](server.md)
