@@ -3,7 +3,7 @@ cache: cargo
 before_install:
   - if [[ ! -f $HOME/.cargo/bin/cargo-install-update ]]; then cargo install cargo-update; fi
   - cargo install-update -i mdbook
-  - expor PATH=$HOME/.cargo/bin:$PATH
+  - export PATH=$HOME/.cargo/bin:$PATH
 script:
   - mdbook build
 after_success:
