@@ -21,7 +21,7 @@ if [[ "${BRANCH}" != "master" ]]; then
 fi
 
 REV="$(git rev-parse --short HEAD)"
-UPSTREAM_URL="https://${GH_TOKEN}@github.com/finchers-rs/docs.git"
+UPSTREAM_URL="https://${GH_TOKEN}@github.com/finchers-rs/guide.git"
 USERNAME="Yusuke Sasaki"
 EMAIL="yusuke.sasaki.nuem@gmail.com"
 
