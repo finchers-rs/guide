@@ -3,50 +3,27 @@
 > [draft] This chapter is currently working in progress.
 
 ## Installing Rust
-You will need to install the latest version of Rust toolchain before starting to write your Finchers application.
-The recommended way is to install the Rust toolchain using `rustup` as follows:
+You will need to install the latest version of Rust toolchain before starting to write a Finchers application.
+The recommended way to manage Rust toolchains is using the official toolchain manager `rustup`, which could be installed as follows:
 
 ```shell-session
 $ curl -sSf https://sh.rustup.rs | sh
 ```
 
-Finchers requires the version of the Rust toolchain 1.23 or higher.
+Finchers requires the stable version of Rust, 1.23 or higher.
 
-## Writing Your First Finchers Application
+## Running Examples
 
-First, create a new Cargo project.
-
-```shell-session
-$ cargo new --bin finchers-hello
-$ cd finchers-hello
-```
-
-Next, add the dependency for `finchers` to `Cargo.toml`.
-
-```toml
-[dependencies]
-finchers = "0.10"
-```
-
-Edit `src/main.rs`.
-
-```rust
-#[macro_use]
-extern crate finchers;
-
-use finchers::Application;
-
-fn main() {
-    let endpoint = e!("Hello, Finchers!\n");
-    Application::from_endpoint(endpoint).run();
-}
-```
+The most easy way to start experiment Finchers applications is
+to clone the repository of the project and to run contained examples.
+For example, you will run the simple example as follows:
 
 ```shell-session
-$ cargo run
+$ git clone https://github.com/finchers-rs/finchers.git -b v0.11.0
+$ cd finchers
+$ cargo run --example hello
 ```
 
-```shell-session
-$ curl http://127.0.0.1:4000/
-Hello, Finchers!
-```
+More examples are contained in the directory [`examples/`][examples].
+
+[examples]: https://github.com/finchers-rs/finchers/tree/master/examples/
