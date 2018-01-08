@@ -18,6 +18,7 @@ fi
 BRANCH="$(get_branch)"
 if [[ "${BRANCH}" != "master" ]]; then
     echo "The deployment should be from 'master', not '${BRANCH}'."
+    exit 1
 fi
 
 REV="$(git rev-parse --short HEAD)"
