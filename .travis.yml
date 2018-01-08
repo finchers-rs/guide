@@ -8,3 +8,6 @@ script:
   - mdbook build
 after_success:
   - ./deploy.sh
+branches:
+  only:
+  - master
