@@ -2,6 +2,12 @@
 
 今回は，
 
+## Authorization
+
+```txt
+GET /authorize
+```
+
 ## Public Resources
 
 ```txt
@@ -16,10 +22,6 @@ GET /users/:user_id/articles
 `/articles`, `/users` 下には公開されている（認証情報が不要な）リソースのエンドポイントが配置される．
 
 ## Private Resources
-
-```txt
-GET /user/login
-```
 
 ```txt
 GET    /user

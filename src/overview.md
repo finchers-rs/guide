@@ -2,6 +2,9 @@
 
 > [draft] This chapter is currently working in progress.
 
+Finchers は Rust で非同期 I/O を用いた Web サービスを構築するためのコンビネータライブラリである．
+
+## Finchers の対象範囲
 一般に，Web サービスは次のような手順で処理が実行される．
 
 1. HTTPリクエストの解析

@@ -3,7 +3,7 @@
 まず，各エンドポイントは次のような階層構造で表現することが出来る．
 
 ```txt
-GET /auth [Authorization: Basic]
+GET /authorize [Authorization: Basic]
 
 /articles
   |-> GET /
@@ -16,7 +16,7 @@ GET /auth [Authorization: Basic]
     |-> GET /articles
 
 /user [Authorization: Bearer]
-  |-> GET /
+  |-> GET /info
   /articles
     |-> GET /
     |-> POST / [application/json]
@@ -30,7 +30,7 @@ GET /auth [Authorization: Basic]
 
 ```rust
 let api = e!("api/v1").with(choice![
-    get("auth").with(basic_auth),
+    get("authorize").with(basic_auth),
     e!("articles").with(choice![
         get(()),
         get(article_id.clone()),
@@ -43,7 +43,7 @@ let api = e!("api/v1").with(choice![
         ]),
     ]),
     e!("user").with((access_token, choice![
-        get(()),
+        get("info"),
         e!("articles").with(choice![
             get(()),
             post(body()),
