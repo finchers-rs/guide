@@ -4,7 +4,7 @@
 
 - [Quickstart](quickstart.md)
 - [Key Concepts of Finchers](concept/index.md)
-    - [Overview](concept/overview.md)
+    - [Overview](concept/overview.md)
     - [`Endpoint`](concept/endpoint.md)
     - [`Responder`](concept/responder.md)
 - [Using Finchers](using-finchers/index.md)
