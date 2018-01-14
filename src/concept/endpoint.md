@@ -9,28 +9,28 @@
 trait Endpoint {
     type Item;
     type Error;
-    type Task: Task<Item = Self::Item, Error = Self::Error>;
+    type Result: EndpointResult<Item = Self::Item, Error = Self::Error>;
 
-    fn apply(&self, &mut EndpointContext) -> Option<Self::Task>;
+    fn apply(&self, &mut EndpointContext) -> Option<Self::Result>;
 }
 ```
 
-メソッド `apply` を呼び出すことでルーティングが実行される．
-ここで `EndpointContext` は入力であるリクエストとルーティングに関する情報を保持する構造体である．
-リクエストが適合しなければ `None` を返し，`404 Not Found` として解釈される．
-
-`Task` は `Endpoint` の戻り値を抽象化するためのトレイトであり，ルーティングの結果が確定した後に `Future` の値に変換される．
+`EndpointResult` は `Endpoint` の戻り値を抽象化するためのトレイトであり，ルーティングの結果が確定した後に `Future` の値に変換される．
 このトレイトの定義は次のようになる．
 
 ```rust
-trait Task {
+trait EndpointResult {
     type Item;
     type Error;
     type Future: Future<Item = Self::Item, Error = Result<Self::Error, hyper::Error>>;
 
-    fn launch(self, ctx: &mut TaskContext) -> Self::Future;
+    fn into_future(self, ctx: &mut TaskContext) -> Self::Future;
 }
 ```
+
+1. `Endpoint::apply` が呼び出される
+2. `EndpointResult::into_future` が呼び出され、`Future` のインスタンスが生成される
+3. `Future` の値が解決される
 
 ## コンポーネントの結合
 
