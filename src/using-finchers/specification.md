@@ -1,12 +1,13 @@
 # Specification of Sample Application
 
-今回は，
-
 ## Authorization
 
 ```txt
 GET /authorize
 ```
+
+`/authorize` に Basic 認証を伴う GET リクエストを送ることで認証を行う。
+戻り値は JSON 形式とし、プライベートなリソースにアクセスするためのアクセストークンを含む。
 
 ## Public Resources
 
@@ -32,5 +33,5 @@ DELETE /user/articles/:article_id
 PUT    /user/articles/:article_id
 ```
 
-また，`/user` 下に現在ログインしているユーザのリソースが配置される．
-
+`/user` 下に現在ログインしているユーザのリソースが配置される．
+上の認証で得た Bearer トークンをヘッダに付与する必要があり、なければ Unauthorized を返す。
