@@ -41,13 +41,27 @@ let basic_auth = header_opt().and_then(|h| match h {
 struct AccessToken(String);
 
 // Endpoint<Item = AccessToken, Error = ClientError>
-let access_token = header_opt().and_then(|h| match h { Some(Authorization(Bearer { token })) => Ok(AccessToken(token)), None => Err(ClientError::AccessToken(AccessTokenError::EmptyToken)), });
+let access_token = header_opt().and_then(|h| match h {
+    Some(Authorization(Bearer { token })) => Ok(AccessToken(token)),
+    None => Err(ClientError::AccessToken(AccessTokenError::EmptyToken)),
+});
 ```
 
 JSON 形式のリクエストボディの読み込み。
 
 ```rust
-let body = body().then(|b| match b { Ok(Json(body)) => Ok(body), Err(e) => Err(ClientError::ParseBody(e)), });
+use finchers::contrib::json::Json;
+
+#[derive(Deserialize)]
+struct Article {
+    title: String,
+}
+
+// Endpoint<Item = NewArticle, Error = ClientError>
+let article = body::<Json<Article>>().then(|b| match b {
+    Ok(Json(body)) => Ok(body),
+    Err(e) => Err(ClientError::ParseNewArticle(e)),
+});
 ``` 
 
 ## Endpoint
