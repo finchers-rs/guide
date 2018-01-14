@@ -4,10 +4,10 @@
 
 - [Quickstart](quickstart.md)
 - [Key Concepts in Finchers](concept/index.md)
-    - [Whai is Finchers](concept/overview.md)
+    - [What is Finchers](concept/overview.md)
     - [`Endpoint`](concept/endpoint.md)
-    - [`Process`](concept/process.md)
-    - [`Responder`](concept/responder.md)
+    - [`Process`](concept/process.md)
+    - [`Responder`](concept/responder.md)
 - [Using Finchers](using-finchers/index.md)
     - [Specification of API Server](using-finchers/specification.md)
     - [Definition of API Endpoint](using-finchers/endpoint.md)
