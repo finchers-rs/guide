@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Finchers Users Guide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="The user guide of Finchers">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li class="affix"><a href="introduction.html">Introduction</a></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="endpoint.html"><strong aria-hidden="true">2.</strong> Understanding Endpoint</a></li><li><a href="responder.html"><strong aria-hidden="true">3.</strong> Converting to HTTP Response</a></li><li><a href="error-handling.html"><strong aria-hidden="true">4.</strong> Error Handling</a></li><li><a href="launcher.html"><strong aria-hidden="true">5.</strong> Launching as HTTP Server</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Finchers Users Guide</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#introduction" id="introduction"><h1>Introduction</h1></a>
+<p>Finchers Users Guide にようこそ。</p>
+<p>Finchers は、非同期性と型安全性を重視したコンポーネント指向のWebフレームワークです。
+元々のコンセプトは Scala のライブラリである Finch から着想を得ています。</p>
+<p>Finchers では、<code>Endpoint</code> というトレイトを実装したコンポーネントを組み合わせていくことで Web アプリケーションを構築します。
+Rust のトレイトに基づく静的なディスパッチにより、これらのコンポーネントを組み合わせることによる実行時コストは多くの場合インライン化されます。</p>
+<a class="header" href="#quickstart" id="quickstart"><h2>Quickstart</h2></a>
+<p>Finchers を用いた Web アプリケーションを試す最も簡単な方法は、プロジェクトのリポジトリをクローンしてサンプルコードを実行することです。
+例えば、ToDo アプリの例 （<code>examples/todos</code>）を実行するためには次のようにします。</p>
+<pre><code class="language-shell-session">$ git clone https://github.com/finchers-rs/finchers.git
+$ cd finchers
+$ cargo +nightly run -p example-todos
+</code></pre>
+<p>More examples are located in the directory <a href="https://github.com/finchers-rs/finchers/tree/master/examples/"><code>examples/</code></a>.</p>
+<blockquote>
+<p>Finchers では、 <code>futures_api</code> などいくつかの不安定な言語・ライブラリ機能に依存しています。
+将来的にこれらが安定化されるまでは、nightly コンパイラを使用する必要があります。
+ツールチェインの管理に <code>rustup</code> を使用している場合、次のように nightly コンパイラを使用するよう
+設定を上書きしておくことをお勧めします。</p>
+<pre><code class="language-shell-session">$ cd /path/to/user-project
+$ rustup override set nightly
+</code></pre>
+</blockquote>
+<a class="header" href="#getting-started" id="getting-started"><h1>Getting Started</h1></a>
+<p>WIP</p>
+<a class="header" href="#understanding-endpoint" id="understanding-endpoint"><h1>Understanding Endpoint</h1></a>
+<p>Finchers では、HTTP アプリケーションにおけるルーティングとリクエストの解析を <code>Endpoint</code> というトレイトにより抽象化しています。
+大まかに言うと、このトレイトはクライアントからのリクエストを受け取り、ある型の値を返す（非同期な）関数を表します。</p>
+<p>説明のために簡略化した <code>Endpoint</code> の定義を以下に示します。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+trait Endpoint&lt;'a&gt; {
+    type Output: Tuple;
+    type Future: TryFuture&lt;Ok = Self::Output, Error = Error&gt; + 'a;
+
+    fn apply(&amp;'a self, cx: &amp;mut Context&lt;'_&gt;) -&gt; EndpointResult&lt;Self::Future&gt;;
+}
+#}</code></pre></pre>
+<p>多くのものが登場しました。少しずつ見ていきましょう。</p>
+<p>このトレイトは、一つのメソッド <code>apply()</code> を持っています。
+この中では、クライアントから受信したリクエストの中身を処理し、関連型 <code>Output</code> の値に解決される <code>Future</code> の値を返します。
+リクエストの値へのアクセスは <code>Context</code> という構造体を介して行います。
+この中には、クライアントからのリクエストの値と同時に Finchers 内部で使用されるパス内の位置情報などのコンテキスト値が格納されています。</p>
+<p>関連型 <code>Output</code> はエンドポイント自体の「出力」を表します。
+後述するコンビネータを実装する関係で、この関連型はタプル型のみを取るよう制限されています（実際には、この制約は内部トレイト <code>Tuple</code> で表されます）。</p>
+<a class="header" href="#built-in-endpoints" id="built-in-endpoints"><h2>Built-in Endpoints</h2></a>
+<p>通常、ユーザはこのトレイトの実装を直接記述する必要はありません。
+その代わり、あらかじめ組み込まれているコンポーネントを組み合わせていくことで Web アプリケーションを構築していきます。
+これは丁度、combine などのパーザコンビネータの働きと類似しています。</p>
+<p>path segments:</p>
+<ul>
+<li><code>path(segment)</code></li>
+<li><code>param&lt;T&gt;()</code></li>
+</ul>
+<p>body parsing:</p>
+<ul>
+<li><code>body::parse::&lt;T&gt;()</code></li>
+<li><code>body::json::&lt;T&gt;()</code></li>
+<li><code>body::urlencoded::&lt;T&gt;()</code></li>
+</ul>
+<p>header:</p>
+<ul>
+<li><code>header::required::&lt;T&gt;()</code></li>
+<li><code>header::optional::&lt;T&gt;()</code></li>
+</ul>
+<p>query:</p>
+<ul>
+<li><code>query::parse()</code></li>
+</ul>
+<a class="header" href="#composing-endpoints" id="composing-endpoints"><h2>Composing Endpoints</h2></a>
+<p>上に紹介したエンドポイントは、一般的な Web アプリケーションを構築するために用いることを想定した基本的な機能のみを提供します。
+実用的な複雑なアプリケーションを実装するためには、これらのコンポーネントを組み合わせていくことで実現します。
+基本的には、次の 3 つの方法でコンポーネントを組み合わせます:</p>
+<ul>
+<li>2 つの <code>Endpoint</code> を結合し、それらの結果の直積（タプル）を返す</li>
+<li>2 つの <code>Endpoint</code> のうち、リクエストに「よりマッチする」側の出力を返す</li>
+<li>結果を別の値に変換する</li>
+</ul>
+<p>ライブラリでは、基本的なコンビネータを提供するためのトレイト <code>EndpointExt</code> が用意されており、これをインポートすることで以下のコンビネータが使用可能になります。</p>
+<a class="header" href="#product" id="product"><h3>Product</h3></a>
+<p>コンビネータ <code>and</code> を用いることで、2つのエンドポイントの結果を結合したエンドポイントを作ります。
+2つのエンドポイントの結果は、HList という仕組みを用いて単一のタプルに平滑化されます。
+これにより、複数のエンドポイントを組み合わせていくことで <code>Output</code> の型が入り組んだものになることを防ぐことが可能になります。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let endpoint1 = path(&quot;posts&quot;);
+let endpoint2 = param::&lt;u32&gt;();
+
+let endpoint = endpoint1.and(endpoint2);
+#}</code></pre></pre>
+<p>上の例の場合、2 つのエンドポイント（それぞれ <code>()</code>, <code>(u32,)</code> を <code>Output</code> に持つ）を組み合わせた結果の型は <code>(u32,)</code> となります。
+このような結合を常に可能にするため、<code>Endpoint</code> の関連型 <code>Output</code> が取ることの出来る型がタプル型のみになるような制約が設けられています。</p>
+<a class="header" href="#mapping" id="mapping"><h3>Mapping</h3></a>
+<p>結合したエンドポイントの出力は、ビジネスロジックへと渡すことで出力へと「変換」する必要があります。
+この変換を実現するためのコンビネータは次のとおりです。
+それぞれ</p>
+<ul>
+<li><code>e.map(f)</code> - a</li>
+<li><code>e.then(f)</code> - a</li>
+<li><code>e.and_then(f)</code> - a</li>
+</ul>
+<p><code>and()</code> により平滑化されたタプルからクロージャの引数への変換は、次のように自動的に行われます。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let endpoint = path(&quot;posts&quot;).and(param()).and(body::parse())
+    .map(|id: u32, body: String| {
+        format!(&quot;id = {}, body = {}&quot;, id, body)
+    });
+#}</code></pre></pre>
+<a class="header" href="#coproduct-or" id="coproduct-or"><h3>Coproduct (<code>or</code>)</h3></a>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let add_post = ...;
+let create_post = ...;
+
+let post_api = add_post.or(create_post);
+#}</code></pre></pre>
+<a class="header" href="#converting-to-http-responses" id="converting-to-http-responses"><h1>Converting to HTTP Responses</h1></a>
+<p>コンビネータにより返された値は、クライアントに送信する前に HTTP レスポンスへと変換する必要があります。
+Finchers では、この変換処理を <code>Output</code> というトレイトを用いて抽象化しています。</p>
+<p><code>Output</code> は次のように定義されています。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+trait Output {
+    type Body;
+    type Error;
+
+    fn respond(self, cx: &amp;mut OutputContext&lt;'_&gt;)
+        -&gt; Result&lt;Response&lt;Self::Body&gt;, Self::Error&gt;;
+}
+#}</code></pre></pre>
+<a class="header" href="#error-handling" id="error-handling"><h1>Error Handling</h1></a>
+<a class="header" href="#httperror" id="httperror"><h2><code>HttpError</code></h2></a>
+<p>Finchers では、Web アプリケーション内で生じるエラーを <code>HttpError</code> というトレイトを用いて抽象化します。
+<code>HttpError</code> は <code>error</code> モジュール内で定義されており、そのシグネチャは以下の通りです。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+trait HttpError: fmt::Debug + fmt::Display + Send + Sync + 'static {
+    fn status_code(&amp;self) -&gt; StatusCode;
+    fn headers(&amp;self, h: &amp;mut HeaderMap);
+}
+#}</code></pre></pre>
+<p>このトレイトを実装したエラー値は、同じく <code>error</code> モジュール内にある <code>Error</code> 型へと変換された上でフレームワーク内に保持され、クライアントへのレスポンス構築時にエラーレスポンスへと変換されます。</p>
+<a class="header" href="#recovering" id="recovering"><h2>Recovering</h2></a>
+<p>エラー値は通常「例外」としてフレームワーク内で扱われ、レスポンスへの変換は通常自動で行われます。
+この挙動をカスタマイズしたい場合、<code>recover</code> というコンビネータを用いることで可能になります。</p>
+<pre><pre class="playpen"><code class="language-rust">
+# #![allow(unused_variables)]
+#fn main() {
+let endpoint = ...;
+
+endpoint
+    .fixed() // ルーティングのエラーを Future として返すようにする
+    .recover(|err| -&gt; Result&lt;&amp;'static str, Error&gt; {
+        if err.status_code() == StatusCode::NOT_FOUND {
+            Ok(&quot;not found&quot;)
+        } else if err.status_code() == StatusCode::BAD_REQUEST {
+            Ok(&quot;bad request&quot;)
+        } else {
+            Err(err)
+        }
+    })
+#}</code></pre></pre>
+<p><code>recover</code> の返す値は隠蔽されており、その後でユーザ側で使用することは現在禁止しています。</p>
+<a class="header" href="#launching-as-http-server" id="launching-as-http-server"><h1>Launching as HTTP Server</h1></a>
+<p>WIP</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
